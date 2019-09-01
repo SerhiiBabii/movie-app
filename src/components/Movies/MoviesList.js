@@ -11,17 +11,45 @@ export default class MovieList extends Component {
     };
   }
 
-  componentDidMount() {
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru-RU`;
+  changedSortBy = (filter, page = 1, currentTotalPages, genre = "") => {
+    const { sort_by, year } = filter;
+
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru-RU&sort_by=${sort_by}&page=${page}&primary_release_year=${year}&with_genres=${genre}`;
     fetch(link)
       .then(response => {
         return response.json();
       })
       .then(data => {
+        currentTotalPages(data.total_pages);
         this.setState({
           movies: data.results
         });
       });
+  };
+
+  componentDidMount() {
+    this.changedSortBy(
+      this.props.filters,
+      this.props.page,
+      this.props.currentTotalPages,
+      this.props.genre
+    );
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.filters.sort_by !== this.props.filters.sort_by ||
+      prevProps.page !== this.props.page ||
+      prevProps.filters.year !== this.props.filters.year ||
+      prevProps.genre !== this.props.genre
+    ) {
+      this.changedSortBy(
+        this.props.filters,
+        this.props.page,
+        this.props.currentTotalPages,
+        this.props.genre
+      );
+    }
   }
 
   render() {
