@@ -57,7 +57,6 @@ export default class App extends React.Component {
   };
 
   getGenres = () => {
-    console.log("getGenres");
     const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_3}&language=ru-Ru`;
     fetch(link)
       .then(response => {
@@ -93,7 +92,6 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log("componentDidMount in App");
     this.getGenres();
   }
 
