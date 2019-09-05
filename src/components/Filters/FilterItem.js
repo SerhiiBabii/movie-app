@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class FilterItem extends Component {
-  render() {
-    const { filterItems } = this.props;
-    return filterItems.map(item => (
-      <option key={item.id} value={item.value}>
-        {item.title}
-      </option>
-    ));
-  }
-}
+const FilterItem = ({ filterItems }) => {
+  return filterItems.map(item => (
+    <option key={item.id} value={item.value}>
+      {item.title}
+    </option>
+  ));
+};
+
+export default FilterItem;

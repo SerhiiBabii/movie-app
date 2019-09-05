@@ -1,8 +1,7 @@
 import React from "react";
 import FilterItem from "./FilterItem";
 
-const FilterSelect = props => {
-  const { name, id, value, handleSelect, filterItems } = props;
+const FilterSelect = ({ name, id, value, handleSelect, filterItems }) => {
   return (
     <div className="form-group">
       <label htmlFor={id}>Сортировать по:</label>

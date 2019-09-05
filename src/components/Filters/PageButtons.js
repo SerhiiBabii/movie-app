@@ -1,7 +1,6 @@
 import React from "react";
 
-const PageButtons = props => {
-  const { page, total_pages, changePage } = props;
+const PageButtons = ({ page, total_pages, changePage }) => {
   return (
     <React.Fragment>
       <div className="btn-group col-12">
