@@ -1,7 +1,11 @@
 import React from "react";
 import Filters from "./Filters/Filters";
 import MoviesList from "./Movies/MoviesList";
-import { API_URL, API_KEY_3 } from "../api/api";
+import Header from "./Header/Header";
+import { API_URL, API_KEY_3, fetchApi } from "../api/api";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const initialState = {
   filters: {
@@ -18,9 +22,34 @@ export default class App extends React.Component {
 
     this.state = {
       ...initialState,
+      user: null,
+      session_id: null,
       total_pages: ""
     };
   }
+
+  updateUser = user => {
+    this.setState({
+      user
+    });
+  };
+
+  updateSessionId = session_id => {
+    cookies.set("session_id", session_id, {
+      path: "/",
+      maxAge: 259200
+    });
+    this.setState({
+      session_id
+    });
+  };
+
+  onLogOut = () => {
+    cookies.remove("session_id");
+    this.setState({
+      user: null
+    });
+  };
 
   handleSelect = e => {
     const name = e.target.name;
@@ -93,12 +122,26 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getGenres();
+    const session_id = cookies.get("session_id");
+    if (session_id) {
+      fetchApi(
+        `${API_URL}/account?api_key=${API_KEY_3}&session_id=${session_id}`
+      ).then(user => {
+        this.updateUser(user);
+      });
+    }
   }
 
   render() {
-    const { filters, page, total_pages, genres, genre } = this.state;
+    const { filters, page, total_pages, genres, genre, user } = this.state;
     return (
       <div className="container">
+        <Header
+          onLogOut={this.onLogOut}
+          user={user}
+          updateUser={this.updateUser}
+          updateSessionId={this.updateSessionId}
+        />
         <div className="row mt-4">
           <div className="col-4">
             <div className="card" style={{ width: "100%" }}>
