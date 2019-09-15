@@ -1,6 +1,6 @@
 import React from "react";
 import FilterSelect from "./FilterSelect";
-import Checkbox from "./Checkbox";
+import Genres from "./Genres";
 import PageButtons from "./PageButtons";
 
 export default class Filters extends React.Component {
@@ -23,7 +23,6 @@ export default class Filters extends React.Component {
       filters: { sort_by, year },
       page,
       total_pages,
-      genres,
       handleSelect,
       changePage,
       resetFilters,
@@ -58,7 +57,7 @@ export default class Filters extends React.Component {
         >
           Reset filters
         </button>
-        <Checkbox genres={genres} addGenre={addGenre} />
+        <Genres addGenre={addGenre} />
       </form>
     );
   }
