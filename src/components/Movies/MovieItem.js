@@ -1,24 +1,49 @@
 import React from "react";
+import PropTypes from "prop-types";
+import AppContextHOC from "../HOC/AppContextHOC";
+import MovieItemHOC from "./MovieItemHOC";
 
-export default class MovieItem extends React.Component {
-  render() {
-    const { item } = this.props;
-    const poster = item.backdrop_path || item.poster_path;
-    const defaultPoster = "./images/default-movie-poster.jpg";
-    return (
-      <div className="card" style={{ width: "100%" }}>
-        <img
-          className="card-img-top card-img--height"
-          src={
-            poster ? `https://image.tmdb.org/t/p/w500${poster}` : defaultPoster
-          }
-          alt="poster"
-        />
-        <div className="card-body">
-          <h6 className="card-title">{item.title}</h6>
-          <div className="card-text">Рейтинг: {item.vote_average}</div>
+const MovieItem = props => {
+  const {
+    item,
+    favorite,
+    watchlist,
+    poster,
+    defaultPoster,
+    handleMark
+  } = props;
+  return (
+    <div className="card" style={{ width: "100%" }}>
+      <img
+        className="card-img-top card-img--height"
+        src={
+          poster ? `https://image.tmdb.org/t/p/w500${poster}` : defaultPoster
+        }
+        alt="poster"
+      />
+      <div className="card-body">
+        <h6 className="card-title">{item.title}</h6>
+        <div className="card-text">Рейтинг: {item.vote_average}</div>
+        <div className="card-favorite-watchlist">
+          <i className="material-icons" name="favorite" onClick={handleMark}>
+            {favorite ? "star" : "star_border"}
+          </i>
+          <i className="material-icons" name="watchlist" onClick={handleMark}>
+            {watchlist ? "bookmark" : "bookmark_border"}
+          </i>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+MovieItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  watchlist: PropTypes.bool.isRequired,
+  poster: PropTypes.string.isRequired,
+  defaultPoster: PropTypes.string.isRequired,
+  handleMark: PropTypes.func.isRequired
+};
+
+export default AppContextHOC(MovieItemHOC(MovieItem));
