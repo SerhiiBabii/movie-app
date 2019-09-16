@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Login from "./Login/Login";
-import User from "./Login/User";
-import LogOut from "./Login/LogOut";
+import UserMenu from "./Login/UserMenu";
 
 export default class Header extends Component {
   render() {
-    const { user, updateUser, updateSessionId, onLogOut } = this.props;
+    const { user } = this.props;
     return (
       <nav className="navbar navbar-dark bg-primary">
         <div className="container">
@@ -16,14 +15,7 @@ export default class Header extends Component {
               </a>
             </li>
           </ul>
-          {user ? (
-            <div>
-              <User user={user} />
-              <LogOut onLogOut={onLogOut} />
-            </div>
-          ) : (
-            <Login updateUser={updateUser} updateSessionId={updateSessionId} />
-          )}
+          {user ? <UserMenu /> : <Login />}
         </div>
       </nav>
     );
