@@ -1,43 +1,31 @@
-import React, { Component } from "react";
+import React from "react";
 import { Modal, ModalBody } from "reactstrap";
 import ModalLogin from "./ModalLogin";
+import PropTypes from "prop-types";
+import AppContextHOC from "../../HOC/AppContextHOC";
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showModal: false
-    };
+const Login = props => {
+  return (
+    <div>
+      <button
+        className="btn btn-success"
+        type="button"
+        onClick={props.toggleModal}
+      >
+        Log In
+      </button>
+      <Modal isOpen={props.showModal} toggle={props.toggleModal}>
+        <ModalBody>
+          <ModalLogin />
+        </ModalBody>
+      </Modal>
+    </div>
+  );
+};
 
-    this.toggleModal = this.toggleModal.bind(this);
-  }
+Login.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+  showModal: PropTypes.bool.isRequired
+};
 
-  toggleModal = () => {
-    this.setState(prevState => ({
-      showModal: !prevState.showModal
-    }));
-  };
-
-  render() {
-    const { updateUser, updateSessionId } = this.props;
-    return (
-      <div>
-        <button
-          className="btn btn-success"
-          type="button"
-          onClick={this.toggleModal}
-        >
-          Log In
-        </button>
-        <Modal isOpen={this.state.showModal} toggle={this.toggleModal}>
-          <ModalBody>
-            <ModalLogin
-              updateUser={updateUser}
-              updateSessionId={updateSessionId}
-            />
-          </ModalBody>
-        </Modal>
-      </div>
-    );
-  }
-}
+export default AppContextHOC(Login);
