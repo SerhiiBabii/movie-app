@@ -17,6 +17,7 @@ export default Component =>
       const name = e.target.name;
       const value = e.target.value;
       this.setState(prevState => ({
+        ...prevState,
         [name]: value,
         errors: {
           ...prevState.errors,
@@ -30,6 +31,7 @@ export default Component =>
       const errors = this.validateFields(e);
       if (Object.keys(errors).length > 0) {
         this.setState(prevState => ({
+          ...prevState,
           errors: {
             ...prevState.errors,
             ...errors
@@ -68,6 +70,7 @@ export default Component =>
       const errors = this.validateFields(e);
       if (Object.keys(errors).length > 0) {
         this.setState(prevState => ({
+          ...prevState,
           errors: {
             ...prevState.errors,
             ...errors
@@ -80,6 +83,7 @@ export default Component =>
 
     onLogIn = () => {
       this.setState({
+        ...this.state,
         submitting: true
       });
 
@@ -110,11 +114,10 @@ export default Component =>
         })
         .then(user => {
           this.props.updateUser(user);
-          this.props.getMovieFavorite(user.id, this.props.session_id);
-          this.props.getMovieWatchlist(user.id, this.props.session_id);
           this.props.toggleModal();
           if (this._isMounted) {
             this.setState({
+              ...this.state,
               submitting: false
             });
           }
@@ -122,6 +125,7 @@ export default Component =>
         .catch(error => {
           console.log("error", error);
           this.setState({
+            ...this.state,
             submitting: false,
             errors: {
               base: error.status_message
