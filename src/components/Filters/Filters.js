@@ -20,6 +20,7 @@ export default class Filters extends React.Component {
   };
   render() {
     const {
+      filters,
       filters: { sort_by, year },
       page,
       total_pages,
@@ -57,7 +58,7 @@ export default class Filters extends React.Component {
         >
           Reset filters
         </button>
-        <Genres addGenre={addGenre} />
+        <Genres filters={filters} addGenre={addGenre} />
       </form>
     );
   }
