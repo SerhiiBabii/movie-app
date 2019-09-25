@@ -17,10 +17,14 @@ export default class Credits extends Component {
   };
 
   updateActors = () => {
-    CallApi.get(`/movie/${this.props.movieId}/credits`, {
+    CallApi.get(`/movie/${this.props.match.params.id}/credits`, {
       params: { language: "ru_RU" }
     }).then(this.getActors);
   };
+
+  componentDidMount() {
+    this.updateActors();
+  }
 
   componentDidUpdate(prevProps) {
     if (

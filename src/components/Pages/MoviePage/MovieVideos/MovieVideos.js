@@ -8,12 +8,15 @@ export default class Video extends Component {
     loaded: true
   };
 
+  componentDidMount() {
+    this.updateVideo();
+  }
+
   componentDidUpdate(prevProps) {
     if (
       prevProps.activeTab !== this.props.activeTab &&
       this.props.activeTab === "2"
     ) {
-      console.log("componentDidUpdate");
       this.updateVideo();
     }
   }
@@ -26,11 +29,10 @@ export default class Video extends Component {
   };
 
   updateVideo = () => {
-    CallApi.get(`/movie/${this.props.movieId}/videos`, {
+    CallApi.get(`/movie/${this.props.match.params.id}/videos`, {
       params: { language: "ru-RU" }
     }).then(data => {
       this.getVideo(data);
-      console.log(data);
     });
   };
 
