@@ -3,8 +3,8 @@ import CallApi from "../../api/api";
 
 export default Component =>
   class MoviesHOC extends React.Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
 
       this.state = {
         movies: []
@@ -65,6 +65,22 @@ export default Component =>
 
     render() {
       const { movies } = this.state;
-      return <Component movies={movies} />;
+      const {
+        filters,
+        favorite,
+        watchlist,
+        getMovieWatchlist,
+        getMovieFavorite
+      } = this.props;
+      return (
+        <Component
+          filters={filters}
+          movies={movies}
+          favorite={favorite}
+          watchlist={watchlist}
+          getMovieWatchlist={getMovieWatchlist}
+          getMovieFavorite={getMovieFavorite}
+        />
+      );
     }
   };

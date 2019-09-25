@@ -37,9 +37,11 @@ export default Component =>
           })
           .then(() => {
             this.setState(prevState => ({
-              ...this.state,
+              ...this.prevState,
               [name]: !prevState[name]
             }));
+            this.checkMark("watchlist", this.props.item.id);
+            this.checkMark("favorite", this.props.item.id);
           });
       } else if (!this.props.user) {
         this.props.toggleModal();
@@ -49,13 +51,22 @@ export default Component =>
     checkMark = (targetName, movieId) => {
       this.props[targetName].results.forEach(itemResults => {
         if (movieId === itemResults.id) {
-          this.setState({
-            ...this.state,
+          this.setState(prevState => ({
+            ...prevState,
             [targetName]: true
-          });
+          }));
         }
       });
     };
+
+    componentDidMount() {
+      if (this.props.user) {
+        this.checkMark("watchlist", this.props.item.id);
+      }
+      if (this.props.user) {
+        this.checkMark("favorite", this.props.item.id);
+      }
+    }
 
     componentDidUpdate(prevProps) {
       if (this.props.user) {
@@ -65,6 +76,13 @@ export default Component =>
         if (prevProps.favorite !== this.props.favorite) {
           this.checkMark("favorite", this.props.item.id);
         }
+      }
+      if (
+        prevProps.filters !== this.props.filters ||
+        prevProps.page !== this.props.page
+      ) {
+        this.checkMark("watchlist", this.props.item.id);
+        this.checkMark("favorite", this.props.item.id);
       }
       if (prevProps.user && this.props.user === null) {
         this.setState({
