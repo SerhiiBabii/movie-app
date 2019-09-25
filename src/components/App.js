@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Filters from "./Filters/Filters";
-import MoviesList from "./Movies/MoviesList";
 import Header from "./Header/Header";
 import CallApi from "../api/api";
 import Cookies from "universal-cookie";
+import MoviesPage from "./Pages/MoviesPage/MoviesPage";
+import MoviePage from "./Pages/MoviePage/MoviePage";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 const cookies = new Cookies();
 
@@ -35,6 +36,7 @@ export default class App extends Component {
   updateUser = user => {
     this.updateUserId(user.id);
     this.setState({
+      ...this.state,
       user
     });
   };
@@ -45,6 +47,7 @@ export default class App extends Component {
       maxAge: 259200
     });
     this.setState({
+      ...this.state,
       session_id
     });
   };
@@ -181,63 +184,48 @@ export default class App extends Component {
   render() {
     const {
       filters,
+      user,
       page,
       total_pages,
-      user,
       session_id,
-      showModal
+      showModal,
+      watchlist,
+      favorite
     } = this.state;
     return (
-      <AppContext.Provider
-        value={{
-          user: user,
-          filters: filters,
-          onLogOut: this.onLogOut,
-          updateUser: this.updateUser,
-          updateSessionId: this.updateSessionId,
-          session_id: session_id,
-          getMovieFavorite: this.getMovieFavorite,
-          getMovieWatchlist: this.getMovieWatchlist,
-          watchlist: this.state.watchlist,
-          favorite: this.state.favorite,
-          showModal: showModal,
-          toggleModal: this.toggleModal
-        }}
-      >
-        <div className="container">
-          <Header user={user} />
-          <div className="row mt-4">
-            <div className="col-4">
-              <div className="card" style={{ width: "100%" }}>
-                <div className="card-body">
-                  <h3>Фильтры:</h3>
-                  <Filters
-                    filters={filters}
-                    handleSelect={this.handleSelect}
-                    page={page}
-                    total_pages={total_pages}
-                    changePage={this.changePage}
-                    resetFilters={this.resetFilters}
-                    addGenre={this.addGenre}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-8">
-              <MoviesList
-                filters={filters}
-                page={page}
-                total_pages={total_pages}
-                currentTotalPages={this.currentTotalPages}
-                user={user}
-                getMovieFavorite={this.getMovieFavorite}
-                getMovieWatchlist={this.getMovieWatchlist}
-                session_id={session_id}
-              />
-            </div>
+      <BrowserRouter>
+        <AppContext.Provider
+          value={{
+            filters: filters,
+            user: user,
+            session_id: session_id,
+            showModal: showModal,
+            watchlist: watchlist,
+            favorite: favorite,
+            page: page,
+            total_pages: total_pages,
+            onLogOut: this.onLogOut,
+            updateUser: this.updateUser,
+            updateSessionId: this.updateSessionId,
+            getMovieFavorite: this.getMovieFavorite,
+            getMovieWatchlist: this.getMovieWatchlist,
+            toggleModal: this.toggleModal,
+            handleSelect: this.handleSelect,
+            changePage: this.changePage,
+            resetFilters: this.resetFilters,
+            addGenre: this.addGenre,
+            currentTotalPages: this.currentTotalPages
+          }}
+        >
+          <div className="container">
+            <Header user={user} />
+            <Link to="/">Main</Link>
+            <Link to="/movie">Movie</Link>
+            <Route path="/" exact component={MoviesPage} />
+            <Route path="/movie/:id" component={MoviePage} />
           </div>
-        </div>
-      </AppContext.Provider>
+        </AppContext.Provider>
+      </BrowserRouter>
     );
   }
 }
