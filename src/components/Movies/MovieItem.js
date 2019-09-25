@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AppContextHOC from "../HOC/AppContextHOC";
 import MovieItemHOC from "./MovieItemHOC";
+import { Link } from "react-router-dom";
 
 const MovieItem = props => {
   const {
@@ -22,7 +23,9 @@ const MovieItem = props => {
         alt="poster"
       />
       <div className="card-body">
-        <h6 className="card-title">{item.title}</h6>
+        <Link to={`/movie/${item.id}`} className="card-title">
+          {item.title}
+        </Link>
         <div className="card-text">Рейтинг: {item.vote_average}</div>
         <div className="card-favorite-watchlist">
           <i className="material-icons" name="favorite" onClick={handleMark}>
@@ -41,7 +44,7 @@ MovieItem.propTypes = {
   item: PropTypes.object.isRequired,
   favorite: PropTypes.bool.isRequired,
   watchlist: PropTypes.bool.isRequired,
-  poster: PropTypes.string.isRequired,
+  poster: PropTypes.string,
   defaultPoster: PropTypes.string.isRequired,
   handleMark: PropTypes.func.isRequired
 };
