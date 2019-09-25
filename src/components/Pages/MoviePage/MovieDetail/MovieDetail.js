@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import CallApi from "../../../../api/api";
 import Snippet from "../Spinner/Spinner";
 import DetailTable from "./DetailTable";
-// import { Col, Table } from "reactstrap";
 
 export default class Detail extends Component {
   state = {
@@ -12,9 +11,6 @@ export default class Detail extends Component {
 
   componentDidMount() {
     this.updateDetails();
-    // setTimeout(() => {
-    //   this.updateDetails();
-    // }, 2000);
   }
 
   getDetails = data => {
@@ -44,9 +40,3 @@ export default class Detail extends Component {
     );
   }
 }
-
-// const ViewDetails = ({ data }) => {
-//   return (
-
-//   );
-// };
