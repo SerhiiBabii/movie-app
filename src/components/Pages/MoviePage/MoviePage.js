@@ -117,7 +117,6 @@ class MoviePage extends Component {
     const defaultPoster = "../../images/default-movie-poster.jpg";
     return (
       <div>
-        <h2>Hello! I'm a Movie Compnent</h2>
         <div className="">
           <img
             src={
