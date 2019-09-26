@@ -78,8 +78,9 @@ export default Component =>
         }
       }
       if (
-        prevProps.filters !== this.props.filters ||
-        prevProps.page !== this.props.page
+        this.props.user &&
+        (prevProps.filters !== this.props.filters ||
+          prevProps.page !== this.props.page)
       ) {
         this.checkMark("watchlist", this.props.item.id);
         this.checkMark("favorite", this.props.item.id);
