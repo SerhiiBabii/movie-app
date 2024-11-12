@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+// import { HashRouter as Router, Route } from "react-router-dom"; // for git-page
 import Cookies from "universal-cookie";
 import Header from "./Header/Header";
 import MoviesPage from "./Pages/MoviesPage/MoviesPage";
@@ -193,7 +194,7 @@ export default class App extends Component {
       favorite
     } = this.state;
     return (
-      <BrowserRouter>
+      <Router>
         <AppContext.Provider
           value={{
             filters: filters,
@@ -223,7 +224,7 @@ export default class App extends Component {
             <Route path="/movie/:id" component={MoviePage} />
           </div>
         </AppContext.Provider>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
