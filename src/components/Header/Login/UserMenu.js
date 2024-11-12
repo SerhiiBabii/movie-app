@@ -37,7 +37,7 @@ class UserMenu extends Component {
           />
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem onClick={onLogOut}>Выйти</DropdownItem>
+          <DropdownItem onClick={onLogOut}>Log out</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );

@@ -1,6 +1,6 @@
 import React from "react";
-import GenresHOC from "./GenresHOC";
 import PropTypes from "prop-types";
+import GenresHOC from "./GenresHOC";
 import AppContextHOC from "../HOC/AppContextHOC";
 
 const Genres = ({ addGenre, genres }) => {

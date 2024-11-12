@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CallApi from "../../../../api/api";
 import Snippet from "../Spinner/Spinner";
+import CallApi from "../../../../api/api";
 
 export default class Video extends Component {
   state = {
@@ -30,7 +30,7 @@ export default class Video extends Component {
 
   updateVideo = () => {
     CallApi.get(`/movie/${this.props.match.params.id}/videos`, {
-      params: { language: "ru-RU" }
+      params: { language: "en-US" }
     }).then(data => {
       this.getVideo(data);
     });

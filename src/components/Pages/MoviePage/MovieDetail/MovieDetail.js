@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import CallApi from "../../../../api/api";
-import Snippet from "../Spinner/Spinner";
 import DetailTable from "./DetailTable";
+import Snippet from "../Spinner/Spinner";
+import CallApi from "../../../../api/api";
 
 export default class Detail extends Component {
   state = {
@@ -22,7 +22,7 @@ export default class Detail extends Component {
 
   updateDetails = () => {
     CallApi.get(`/movie/${this.props.match.params.id}`, {
-      params: { language: "ru-RU" }
+      params: { language: "en-US" }
     }).then(data => {
       this.getDetails(data);
     });

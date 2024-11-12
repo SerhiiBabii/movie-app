@@ -1,6 +1,6 @@
 import React from "react";
-import MovieItem from "./MovieItem";
 import PropTypes from "prop-types";
+import MovieItem from "./MovieItem";
 import MoviesHOC from "./MoviesHOC";
 
 const MoviesList = ({

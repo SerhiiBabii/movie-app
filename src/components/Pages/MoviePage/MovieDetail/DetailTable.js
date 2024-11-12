@@ -8,56 +8,56 @@ const DetailTable = ({ details }) => {
         <Table>
           <tbody>
             <tr>
-              <th scope="row">Статус:</th>
+              <th scope="row">Status:</th>
               <td>{details.status}</td>
             </tr>
             <tr>
-              <th scope="row">Дата выхода:</th>
+              <th scope="row">Release date:</th>
               <td>{details.release_date}</td>
             </tr>
             <tr>
-              <th scope="row">Продолжительность:</th>
-              <td>{details.runtime} мин</td>
+              <th scope="row">Duration:</th>
+              <td>{details.runtime} min</td>
             </tr>
             <tr>
-              <th scope="row">Язык оригинала:</th>
+              <th scope="row">Original language:</th>
               <td>{details.original_language}</td>
             </tr>
             <tr>
-              <th scope="row">Страна:</th>
+              <th scope="row">Country:</th>
               <td>
                 {details.production_countries
                   ? details.production_countries.map(item => {
-                      return item.name;
-                    })
+                    return item.name;
+                  })
                   : null}
               </td>
             </tr>
             <tr>
-              <th scope="row">Бюджет:</th>
+              <th scope="row">Budget:</th>
               <td>{details.budget}$</td>
             </tr>
             <tr>
-              <th scope="row">Сборы:</th>
+              <th scope="row">Fees:</th>
               <td>{details.revenue}$</td>
             </tr>
             <tr>
-              <th scope="row">Компания:</th>
+              <th scope="row">Company:</th>
               <td>
                 {details.production_companies
                   ? details.production_companies.map(item => {
-                      return item.name + ", ";
-                    })
+                    return item.name + ", ";
+                  })
                   : null}
               </td>
             </tr>
             <tr>
-              <th scope="row">Жанры:</th>
+              <th scope="row">Genres:</th>
               <td>
                 {details.genres
                   ? details.genres.map(item => {
-                      return item.name + " ";
-                    })
+                    return item.name + " ";
+                  })
                   : null}
               </td>
             </tr>

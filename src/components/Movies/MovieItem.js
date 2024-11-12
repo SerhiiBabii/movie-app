@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AppContextHOC from "../HOC/AppContextHOC";
-import MovieItemHOC from "./MovieItemHOC";
 import { Link } from "react-router-dom";
+import MovieItemHOC from "./MovieItemHOC";
+import AppContextHOC from "../HOC/AppContextHOC";
 
 const MovieItem = props => {
   const {
@@ -26,7 +26,7 @@ const MovieItem = props => {
         <Link to={`/movie/${item.id}/detail`} className="card-title">
           {item.title}
         </Link>
-        <div className="card-text">Рейтинг: {item.vote_average}</div>
+        <div className="card-text">Rating: {item.vote_average}</div>
         <div className="card-favorite-watchlist">
           <i className="material-icons" name="favorite" onClick={handleMark}>
             {favorite ? "star" : "star_border"}

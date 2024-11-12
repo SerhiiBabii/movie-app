@@ -2,22 +2,20 @@ import React from "react";
 import FilterSelect from "./FilterSelect";
 import Genres from "./Genres";
 import PageButtons from "./PageButtons";
+import { FILTER_YEARS } from "../../constants/filters";
 
 export default class Filters extends React.Component {
+
   state = {
     filterItems: [
-      { id: 1, title: "Популярные по убыванию", value: "popularity.desc" },
-      { id: 2, title: "Популярные по возростанию", value: "popularity.asc" },
-      { id: 3, title: "Рейтинг по убыванию", value: "vote_average.desc" },
-      { id: 4, title: "Рейтинг по возростанию", value: "vote_average.asc" }
+      { id: 1, title: "Popular in descending order", value: "popularity.desc" },
+      { id: 2, title: "Popular ascending", value: "popularity.asc" },
+      { id: 3, title: "Rating in descending order", value: "vote_average.desc" },
+      { id: 4, title: "Rating ascending", value: "vote_average.asc" }
     ],
-    filterYear: [
-      { id: 1, title: 2019, value: 2019 },
-      { id: 2, title: 2018, value: 2018 },
-      { id: 3, title: 2017, value: 2017 },
-      { id: 4, title: 2016, value: 2016 }
-    ]
+    filterYear: FILTER_YEARS
   };
+
   render() {
     const {
       filters,
@@ -36,6 +34,7 @@ export default class Filters extends React.Component {
           name="sort_by"
           id="sort_by"
           value={sort_by}
+          filterName="order"
           handleSelect={handleSelect}
           filterItems={filterItems}
         />
@@ -43,6 +42,7 @@ export default class Filters extends React.Component {
           name="year"
           id="year"
           value={year}
+          filterName="year"
           handleSelect={handleSelect}
           filterItems={filterYear}
         />

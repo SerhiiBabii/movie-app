@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import Cookies from "universal-cookie";
 import Filters from "../../Filters/Filters";
 import MoviesList from "../../Movies/MoviesList";
-import Cookies from "universal-cookie";
 import AppContextHOC from "../../HOC/AppContextHOC";
 
 const cookies = new Cookies();
@@ -37,7 +37,7 @@ class MoviesPage extends Component {
           <div className="col-4">
             <div className="card" style={{ width: "100%" }}>
               <div className="card-body">
-                <h3>Фильтры:</h3>
+                <h3>Filters:</h3>
                 <Filters
                   filters={filters}
                   favorite={favorite}

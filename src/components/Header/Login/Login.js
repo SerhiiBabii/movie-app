@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, ModalBody } from "reactstrap";
-import ModalLogin from "./ModalLogin";
 import PropTypes from "prop-types";
+import ModalLogin from "./ModalLogin";
 import AppContextHOC from "../../HOC/AppContextHOC";
 
 const Login = props => {

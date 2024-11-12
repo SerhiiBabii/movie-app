@@ -18,7 +18,7 @@ export default class Credits extends Component {
 
   updateActors = () => {
     CallApi.get(`/movie/${this.props.match.params.id}/credits`, {
-      params: { language: "ru_RU" }
+      params: { language: "en-US" }
     }).then(this.getActors);
   };
 

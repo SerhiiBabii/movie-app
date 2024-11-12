@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Header from "./Header/Header";
-import CallApi from "../api/api";
+import { BrowserRouter, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
+import Header from "./Header/Header";
 import MoviesPage from "./Pages/MoviesPage/MoviesPage";
 import MoviePage from "./Pages/MoviePage/MoviePage";
-import { BrowserRouter, Route } from "react-router-dom";
+import CallApi from "../api/api";
 
 const cookies = new Cookies();
 
@@ -13,7 +13,7 @@ export const AppContext = React.createContext();
 const initialState = {
   filters: {
     sort_by: "popularity.desc",
-    year: 2019,
+    year: 2024,
     genre: ""
   },
   page: 1
@@ -134,7 +134,7 @@ export default class App extends Component {
 
   getMovieWatchlist = (user_id, session_id) => {
     CallApi.get(`/account/${user_id}/watchlist/movies`, {
-      params: { session_id: session_id, language: "ru-RU" }
+      params: { session_id: session_id, language: "en-US" }
     }).then(watchlist => {
       this.setState({
         ...this.state,
@@ -145,7 +145,7 @@ export default class App extends Component {
 
   getMovieFavorite = (user_id, session_id) => {
     CallApi.get(`/account/${user_id}/favorite/movies`, {
-      params: { session_id: session_id, language: "ru-RU" }
+      params: { session_id: session_id, language: "en-US" }
     }).then(favorite => {
       this.setState({
         ...this.state,

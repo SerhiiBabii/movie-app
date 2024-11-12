@@ -1,10 +1,10 @@
 import React from "react";
 import FilterItem from "./FilterItem";
 
-const FilterSelect = ({ name, id, value, handleSelect, filterItems }) => {
+const FilterSelect = ({ name, id, value, filterName, handleSelect, filterItems }) => {
   return (
     <div className="form-group">
-      <label htmlFor={id}>Сортировать по:</label>
+      <label htmlFor={id}>Sort by {filterName}:</label>
       <select
         name={name}
         className="form-control"

@@ -8,7 +8,7 @@ export default Component =>
     };
 
     getGenres = () => {
-      const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_3}&language=ru-Ru`;
+      const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_3}&language=en-US`;
       fetch(link)
         .then(response => {
           return response.json();

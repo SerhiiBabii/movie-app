@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router";
 import { NavLink } from "react-router-dom";
+import { Nav, NavItem } from "reactstrap";
+import classnames from "classnames";
 import Credits from "./MovieCredits/MovieCredits";
 import Video from "./MovieVideos/MovieVideos";
 import Detail from "./MovieDetail/MovieDetail";
 import NoMatch from "./NoMatch/NoMatch";
-import { Nav, NavItem } from "reactstrap";
-
-import classnames from "classnames";
 
 export default class MovieTabs extends Component {
   state = {
@@ -35,7 +34,7 @@ export default class MovieTabs extends Component {
                 this.toggle("1");
               }}
             >
-              Детали
+              Details
             </NavLink>
           </NavItem>
           <NavItem>
@@ -46,7 +45,7 @@ export default class MovieTabs extends Component {
                 this.toggle("2");
               }}
             >
-              Видео
+              Video
             </NavLink>
           </NavItem>
           <NavItem>
@@ -57,7 +56,7 @@ export default class MovieTabs extends Component {
                 this.toggle("3");
               }}
             >
-              Актеры
+              Actors
             </NavLink>
           </NavItem>
         </Nav>

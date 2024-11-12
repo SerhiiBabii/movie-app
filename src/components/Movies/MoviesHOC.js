@@ -14,7 +14,7 @@ export default Component =>
     changedSortBy = (filter, page = 1, currentTotalPages) => {
       const { sort_by, year, genre = "" } = filter;
       const queryStringParams = {
-        language: "ru-RU",
+        language: "en-US",
         sort_by: sort_by,
         page: page,
         primary_release_year: year,

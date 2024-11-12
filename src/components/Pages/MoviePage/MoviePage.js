@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CallApi from "../../../api/api";
 import MovieTabs from "./MovieTabs";
+import CallApi from "../../../api/api";
 import AppContext from "../../HOC/AppContextHOC";
 
 class MoviePage extends Component {
@@ -12,7 +12,7 @@ class MoviePage extends Component {
 
   componentDidMount() {
     CallApi.get(`/movie/${this.props.match.params.id}`, {
-      params: { language: "ru_RU" }
+      params: { language: "en-US" }
     }).then(data => {
       this.setState({
         ...this.state,
